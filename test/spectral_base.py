@@ -33,3 +33,17 @@ class modalDecompositions(object):
 
     ## This step calculates the eigenvalues D, and eigen vector V
     D, V = np.linalg.eig(C_norm)
+    DD = D * -1
+    sorted_index = np.argsort(DD)
+    sorted_V = V[:, :, sorted_index]
+    sorted_D = sorted(D, reverse=True)
+
+    ## This step calculated the spatial POD modes
+    podmode = np.zeros((nrow,ncol))
+    i = 0
+    j = 0
+    for i in range (total_modes):
+      for j in range (total_modes):
+        podmode[:,:,i] = podmode[:, :, i] + sorted_V[j, i] * U[:, :, j]
+      mode_factor[i] = 1 / math.sqrt(total_modes * sorted_D[i])
+      pom[:, :, i] = podmode[:, :, i] * mode_factor
