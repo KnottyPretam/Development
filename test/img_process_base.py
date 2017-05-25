@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 import sys,commands,re,os,math
-from skimage import data, io, filters
+from skimage import data, io
 import numpy as np
 
 class imgPTools(object):

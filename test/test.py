@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 import sys,commands,re,os,math
-from skimage import data, io, filters
+from skimage import data, io
 import numpy as np
 from img_process_base import imgPTools
 
@@ -57,3 +57,17 @@ DI = np.diag(D)
 print('Eigen Identity is ' + repr(DI))
 DI2 = np.diag(Ds)
 print('Eigen Identity is ' + repr(DI2))
+E = np.zeros((10,1))
+E[5] = 4
+print('Empty column array is ' + repr(E))
+index = np.where(E==4)
+print('Index for value 5 is ' + repr(index))
+goog = np.zeros((10,10))
+goog[5, 5] = 10
+goog[1,6 ] = 10
+goog_m = np.max(goog)
+goog_indices = np.where(goog == goog_m)
+goog_1ind = goog_indices[0]
+new_goog = goog[goog_indices]
+print(' Correct indices for max value is ' + repr(goog_indices))
+print(' new array is ' + repr(new_goog))
